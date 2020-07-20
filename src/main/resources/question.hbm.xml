@@ -1,0 +1,21 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<!DOCTYPE hibernate-mapping PUBLIC
+        "-//Hibernate/Hibernate Mapping DTD//EN"
+        "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+
+<hibernate-mapping>
+
+    <class name="com.hibernate.demo.model.Question" table="question">
+        <id name="id" type="int">
+            <column name="q_id" />
+            <generator class="increment" />
+        </id>
+        <property name="qname" />
+
+        <list name="answers" table="question_answer" fetch="select" cascade="all">
+            <key column="q_id" />
+            <index column="type"></index>
+            <many-to-many class="com.hibernate.demo.model.Answer" column="ans_id" />
+        </list>
+    </class>
+</hibernate-mapping>
